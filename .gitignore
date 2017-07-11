@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+### spring-mvc template
+# Created by .ignore support plugin (hsz.mobi)
+### spring-mvc template
+.idea/
+out/
+target/
+classes/
+gen/
+*.iml
