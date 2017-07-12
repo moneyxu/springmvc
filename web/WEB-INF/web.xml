@@ -17,14 +17,6 @@
             <param-name>namespace</param-name>
             <param-value>mvc</param-value>
         </init-param>
-        <init-param>
-            <param-name>publishContext</param-name>
-            <param-value>false</param-value>
-        </init-param>
-        <init-param>
-            <param-name>publishEvents</param-name>
-            <param-value>false</param-value>
-        </init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
