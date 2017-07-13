@@ -12,7 +12,7 @@
     <title>用户注册</title>
 </head>
 <body>
-    <form method="post" action="<c:url value="user.html"/> ">
+    <form method="post" action="<c:url value="/user/createUser.html"/> ">
         <table>
             <tr>
                 <td><input type="text" name="userName"/></td>
