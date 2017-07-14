@@ -1,11 +1,9 @@
 package com.qianxu.controller;
 
 import com.qianxu.entity.User;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -35,5 +33,18 @@ public class UserController {
     @ResponseBody
     public String test2(@RequestParam("customerId") String customerId) {
         return "this is customerId=" + customerId;
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "/cookie")
+    @ResponseBody
+    public String cookieValue(@CookieValue(value = "tk") String tk, @RequestHeader("sess") String sess) {
+        return tk + " " + sess;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "withoutparam",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @ResponseBody
+    public String withoutparam(@RequestParam("userName") String userName,@RequestParam("password") String password) {
+        return userName+ " " + password;
     }
 }
