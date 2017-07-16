@@ -5,6 +5,12 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/user")
@@ -42,9 +48,28 @@ public class UserController {
         return tk + " " + sess;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "withoutparam",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/withoutparam",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseBody
     public String withoutparam(@RequestParam("userName") String userName,@RequestParam("password") String password) {
         return userName+ " " + password;
+    }
+
+    @RequestMapping(method = RequestMethod.POST,value = "/handler21")
+    @ResponseBody
+    public void handler21(HttpServletRequest req, HttpServletResponse resp){
+        String userName = WebUtils.findParameterValue(req, "userName");
+        try {
+            resp.getWriter().print(userName);
+            resp.flushBuffer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.POST,value = "/handler22")
+    @ResponseBody
+    public String handler22(HttpSession session){
+        String userName = (String) session.getAttribute("userName");
+        return userName;
     }
 }
