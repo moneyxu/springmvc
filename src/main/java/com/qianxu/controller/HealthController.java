@@ -14,6 +14,6 @@ public class HealthController {
     @RequestMapping(value = "/api/health", method = RequestMethod.GET)
     @ResponseBody
     public String health() {
-        return "success";
+        return "心跳正常";
     }
 }

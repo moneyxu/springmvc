@@ -5,7 +5,10 @@ import com.qianxu.entity.BookMark;
 import com.qianxu.entity.User;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -60,18 +63,21 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/test", params = {"userId"})
+    @RequestMapping(method = RequestMethod.GET, value = "/test", params = {
+            "userId"
+    })
     @ResponseBody
     public String test1(@RequestParam("userId") String userId) {
         return "this is userId=" + userId;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/test", params = {"customerId"})
+    @RequestMapping(method = RequestMethod.GET, value = "/test", params = {
+            "customerId"
+    })
     @ResponseBody
     public String test2(@RequestParam("customerId") String customerId) {
         return "this is customerId=" + customerId;
     }
-
 
     @RequestMapping(method = RequestMethod.GET, value = "/cookie")
     @ResponseBody
@@ -79,15 +85,15 @@ public class UserController {
         return tk + " " + sess;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/withoutparam",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/withoutparam", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseBody
-    public String withoutparam(@RequestParam("userName") String userName,@RequestParam("password") String password) {
-        return userName+ " " + password;
+    public String withoutparam(@RequestParam("userName") String userName, @RequestParam("password") String password) {
+        return userName + " " + password;
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/handler21")
+    @RequestMapping(method = RequestMethod.POST, value = "/handler21")
     @ResponseBody
-    public void handler21(HttpServletRequest req, HttpServletResponse resp){
+    public void handler21(HttpServletRequest req, HttpServletResponse resp) {
         String userName = WebUtils.findParameterValue(req, "userName");
         try {
             resp.getWriter().print(userName);
@@ -97,23 +103,29 @@ public class UserController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/handler22")
+    @RequestMapping(method = RequestMethod.POST, value = "/handler22")
     @ResponseBody
-    public String handler22(HttpSession session){
+    public String handler22(HttpSession session) {
         String userName = (String) session.getAttribute("userName");
         return userName;
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/handler23")
+    @RequestMapping(method = RequestMethod.GET, value = "/handler23")
     @ResponseBody
-    public String handler23(){
+    public String handler23() {
         return "钱旭";
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/handler24")
+    @RequestMapping(method = RequestMethod.GET, value = "/handler24")
     @ResponseBody
-    public byte[] handler24() throws Exception{
+    public byte[] handler24() throws Exception {
         Resource resource = new ClassPathResource("star.jpg");
         return FileCopyUtils.copyToByteArray(resource.getInputStream());
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/handler25")
+    public ResponseEntity<String> handler25(HttpEntity<String> entity) {
+        String body = entity.getBody();
+        return new ResponseEntity<String>(body, HttpStatus.OK);
     }
 }
