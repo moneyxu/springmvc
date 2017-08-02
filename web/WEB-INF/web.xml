@@ -10,12 +10,20 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <!--<servlet>-->
+        <!--<servlet-name>springmvc</servlet-name>-->
+        <!--<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+        <!--<init-param>-->
+            <!--<param-name>namespace</param-name>-->
+            <!--<param-value>mvc</param-value>-->
+        <!--</init-param>-->
+    <!--</servlet>-->
     <servlet>
         <servlet-name>springmvc</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>namespace</param-name>
-            <param-value>mvc</param-value>
+            <param-value>spring</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

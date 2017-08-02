@@ -128,4 +128,9 @@ public class UserController {
         String body = entity.getBody();
         return new ResponseEntity<String>(body, HttpStatus.OK);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/testConverter")
+    public ResponseEntity<User> testConverter(@RequestParam("user") User user) {
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
 }
