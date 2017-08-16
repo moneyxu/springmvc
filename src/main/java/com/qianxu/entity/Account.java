@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 public class Account {
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
