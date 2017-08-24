@@ -23,7 +23,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>namespace</param-name>
-            <param-value>jstl</param-value>
+            <param-value>freemarker</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
