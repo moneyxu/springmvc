@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
@@ -14,6 +15,7 @@
 </head>
 <body>
     <fmt:message key="jstl.message.welcome"/>
+    <a href="<c:url value="/user/normalSuccess.html"/>">跳转到成功页面</a>
     <p>${user.name}</p>
     <form:form modelAttribute="user">
         用户名：<form:input path="name" cssStyle="color:red;"/><br>
