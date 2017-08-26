@@ -4,10 +4,20 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="com.qianxu"/>
+
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1"/>
+    </bean>
+
     <bean id="userListXml" class="org.springframework.web.servlet.view.xml.MarshallingView">
         <property name="modelKey" value="userList"/>
         <property name="marshaller" ref="xmlMarshaller"/>
     </bean>
+
+    <!--<bean id="xmlMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">-->
+    <!--<property name="targetClass" value="com.qianxu.entity.MarShallerUser"/>-->
+    <!--</bean>-->
+
     <bean id="xmlMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
         <property name="streamDriver">
             <bean class="com.thoughtworks.xstream.io.xml.StaxDriver"/>
@@ -17,5 +27,6 @@
                 <value>com.qianxu.entity.MarShallerUser</value>
             </list>
         </property>
+        <property name="encoding" value="UTF-8"/>
     </bean>
 </beans>
