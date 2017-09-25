@@ -1,9 +1,9 @@
 package com.qianxu.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.support.RequestContext;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -28,5 +28,19 @@ public class LocaleResolverController {
     public String test2(HttpServletRequest request){
         RequestContext context = new RequestContext(request);
         return context.getMessage("locale");
+    }
+
+    @RequestMapping(value = "/api/localeResolver/test3",method = RequestMethod.GET)
+    @ResponseBody
+    public String test3(HttpServletRequest request,HttpSession session){
+        RequestContext context = new RequestContext(request);
+        Locale locale = (Locale) session.getAttribute(
+                SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
+        return context.getMessage("locale");
+    }
+
+    @ModelAttribute(value = "org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE")
+    public Locale getSessionLocale(){
+        return Locale.CHINA;
     }
 }
