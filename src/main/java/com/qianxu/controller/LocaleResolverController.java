@@ -26,6 +26,7 @@ public class LocaleResolverController {
     @RequestMapping(value = "/api/localeResolver/test2",method = RequestMethod.GET)
     @ResponseBody
     public String test2(HttpServletRequest request){
+        //clientLanguage:zh_CN
         RequestContext context = new RequestContext(request);
         return context.getMessage("locale");
     }
