@@ -52,4 +52,12 @@ public class LocaleResolverController {
     public Locale getLocale(){
         return Locale.CHINA;
     }
+
+    @RequestMapping(value = "/api/localeResolver/localeChangeInterceptor",method = RequestMethod.GET)
+    @ResponseBody
+    public String localeChangeInterceptor(HttpServletRequest request){
+        // http://localhost:8080/api/localeResolver/localeChangeInterceptor?locale=zh_CN
+        RequestContext context = new RequestContext(request);
+        return context.getMessage("locale");
+    }
 }
