@@ -23,7 +23,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>namespace</param-name>
-            <param-value>locale_change_interceptor</param-value>
+            <param-value>multipart_resolver</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
